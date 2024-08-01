@@ -1,4 +1,4 @@
-<div class="center-choose-item">
+<div *ngIf="rows.length < 8" class="center-choose-item">
   <mat-form-field appearance="fill" class="mat-form-field">
     <mat-label>Product</mat-label>
     <mat-select [(ngModel)]="productRow">

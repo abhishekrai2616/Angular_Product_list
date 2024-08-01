@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private productsSource = new BehaviorSubject<string[]>(['Product A', 'Product B', 'Product C']);
+  private productsSource = new BehaviorSubject<string[]>(['Product A', 'Product B', 'Product C','Product D','Product E','Product F','Product G','Product H','Product I','Product J','Product K','Product L','Product M']);
   products$ = this.productsSource.asObservable();
 
   private productRowSource = new BehaviorSubject<string>('');

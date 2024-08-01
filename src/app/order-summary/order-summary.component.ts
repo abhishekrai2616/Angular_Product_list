@@ -28,8 +28,15 @@ export class AppOrderSummary {
   }
 
   addProduct() {
-    this.sharedService.addRow({ product: this.productRow, quantity: this.quantityRow });
-    this.productRow='';
-    this.quantityRow=0;
+    const existingProduct = this.rows.find(row => row.product === this.productRow);
+    
+    if (existingProduct) {
+      existingProduct.quantity += this.quantityRow;
+    } else {
+      this.sharedService.addRow({ product: this.productRow, quantity: this.quantityRow });
+    }
+
+    this.productRow = '';
+    this.quantityRow = 0;
   }
 }

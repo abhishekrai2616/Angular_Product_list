@@ -17,6 +17,7 @@ export class OrderReaderComponent implements OnInit {
   rows: { product: string; quantity: number }[] = [];
   apiKey = '378bec58599b42e1adbc7a65edd1586f'; // Replace with your VoiceRSS API key
   apiUrl = 'https://api.voicerss.org/';
+  private isPlaying = false; // Flag to track audio playback status
 
   constructor(private sharedService: SharedService, private http: HttpClient) { }
 
@@ -25,6 +26,10 @@ export class OrderReaderComponent implements OnInit {
   }
 
   readOrder(): void {
+    if (this.isPlaying) {
+      return;
+    }
+
     const orderText = this.rows.map(row => `${row.quantity} of ${row.product}`).join(', ');
     this.textToSpeech(orderText);
   }
@@ -34,15 +39,25 @@ export class OrderReaderComponent implements OnInit {
       key: this.apiKey,
       src: text,
       hl: 'en-us',
-      r: '0', // Speed
-      c: 'mp3', // Format
+      r: '0',
+      c: 'mp3',
     });
+
+    this.isPlaying = true;
 
     this.http.get(`${this.apiUrl}?${params.toString()}`, { responseType: 'blob' })
       .subscribe(blob => {
         const audioUrl = URL.createObjectURL(blob);
         const audio = new Audio(audioUrl);
-        audio.play();
+
+        audio.onended = () => {
+          this.isPlaying = false;
+        };
+        audio.play().catch(() => {
+          this.isPlaying = false;
+        });
+      }, () => {
+        this.isPlaying = false;
       });
   }
 }
