@@ -1,0 +1,17 @@
+.center-choose-item{
+    margin: 0 10%;
+}
+
+.mat-form-field{
+    width: 50%;
+}
+
+/* Style for a larger, square button */
+button.mat-raised-button {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; 
+    font-size: large;
+}
+  

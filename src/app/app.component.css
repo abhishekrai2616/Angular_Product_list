@@ -1,0 +1,28 @@
+button.mat-raised-button {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; 
+    font-size: x-large;
+    background: #0367fc;
+    color: white;
+    padding: 1%;
+}
+
+.show-order-button{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.header{
+    font-size: xx-large;
+    margin: 8% 0;
+    display: flex;
+    justify-content: center;
+    font-style: oblique;
+    font-weight: 700;
+    color: #0367fc;
+}

@@ -1,0 +1,27 @@
+/* In order-summary-table.component.css or a global stylesheet */
+
+.centered-table-container {
+    display: flex;
+    justify-content: center; 
+    margin: 0 10%;
+  }
+  
+  .centered-table {
+    width: 60%; /* Sets the width of the table to 60% of its container */
+    border-collapse: collapse; /* Ensures that table borders are collapsed */
+  }
+  
+  .centered-table th, .centered-table td {
+    padding: 8px; /* Adds padding inside table cells */
+    text-align: left; /* Aligns text to the left inside table cells */
+  }
+  
+  .centered-table th {
+    background-color: #f5f5f5; /* Sets a background color for table headers */
+    font-weight: bold; /* Makes header text bold */
+  }
+  
+  .centered-table td {
+    border-bottom: 1px solid #ddd; /* Adds a bottom border to table cells */
+  }
+  

@@ -1,0 +1,27 @@
+<div class="center-choose-item">
+  <mat-form-field appearance="fill" class="mat-form-field">
+    <mat-label>Product</mat-label>
+    <mat-select [(ngModel)]="productRow">
+      <mat-option value="">Choose Product</mat-option>
+      <mat-option *ngFor="let product of products" [value]="product">{{ product }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="productRow" appearance="fill" class="mat-form-field">
+    <mat-label>Quantity</mat-label>
+    <mat-select [(ngModel)]="quantityRow">
+      <mat-option value="">Choose Quantity</mat-option>
+      <mat-option *ngFor="let i of [0, 1, 2, 3, 4, 5]" [value]="i">{{ i }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Show Add button only if both product and quantity are selected -->
+  <button 
+    mat-raised-button 
+    color="primary" 
+    class="mat-raised-button" 
+    (click)="addProduct()"
+    *ngIf="productRow && quantityRow">
+    Add
+  </button>
+</div>
