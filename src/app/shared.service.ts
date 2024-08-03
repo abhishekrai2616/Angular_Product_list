@@ -17,19 +17,6 @@ export class SharedService {
   private rowsSource = new BehaviorSubject<{ product: string; quantity: number }[]>([]);
   rows$ = this.rowsSource.asObservable();
 
-  // Update methods
-  updateProducts(products: string[]) {
-    this.productsSource.next(products);
-  }
-
-  updateProductRow(product: string) {
-    this.productRowSource.next(product);
-  }
-
-  updateQuantityRow(quantity: number) {
-    this.quantityRowSource.next(quantity);
-  }
-
   addRow(row: { product: string; quantity: number }) {
     const currentRows = this.rowsSource.value;
     this.rowsSource.next([...currentRows, row]);

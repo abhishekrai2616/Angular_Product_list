@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppOrderSummary } from './order-summary.component';
+import { AppOrderSummary } from './product-choose.component';
 
 describe('OrderSummaryComponent', () => {
   let component: AppOrderSummary;

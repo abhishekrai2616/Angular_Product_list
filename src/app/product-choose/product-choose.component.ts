@@ -7,13 +7,13 @@ import { CommonModule } from '@angular/common';
 import { SharedService } from '../shared.service';
 
 @Component({
-  selector: 'app-order-summary',
+  selector: 'app-product-choose',
   standalone: true,
   imports: [MatButtonModule, MatSelectModule, MatOptionModule, FormsModule, CommonModule],
-  templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.css']
+  templateUrl: './product-choose.component.html',
+  styleUrls: ['./product-choose.component.css']
 })
-export class AppOrderSummary {
+export class AppProductChoose {
   products: string[] = [];
   productRow: string = '';
   quantityRow: number = 0;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared.service'; // Adjust the path if needed
-import { HttpClient, HttpClientModule } from '@angular/common/http'; // Import HttpClient and HttpClientModule
+import { SharedService } from '../shared.service';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,20 +9,23 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-order-reader',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule, MatIconModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatIconModule],
   templateUrl: './order-reader.component.html',
   styleUrls: ['./order-reader.component.css']
 })
 export class OrderReaderComponent implements OnInit {
   rows: { product: string; quantity: number }[] = [];
-  apiKey = '378bec58599b42e1adbc7a65edd1586f'; // Replace with your VoiceRSS API key
+  apiKey = '378bec58599b42e1adbc7a65edd1586f'; 
   apiUrl = 'https://api.voicerss.org/';
-  private isPlaying = false; // Flag to track audio playback status
+  private isPlaying = false; 
 
   constructor(private sharedService: SharedService, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.sharedService.rows$.subscribe(rows => this.rows = rows);
+    this.sharedService.rows$.subscribe({
+      next: rows => this.rows = rows,
+      error: err => console.error('Error: ', err)
+    });
   }
 
   readOrder(): void {
@@ -45,8 +48,8 @@ export class OrderReaderComponent implements OnInit {
 
     this.isPlaying = true;
 
-    this.http.get(`${this.apiUrl}?${params.toString()}`, { responseType: 'blob' })
-      .subscribe(blob => {
+    this.http.get(`${this.apiUrl}?${params.toString()}`, { responseType: 'blob' }).subscribe({
+      next: blob => {
         const audioUrl = URL.createObjectURL(blob);
         const audio = new Audio(audioUrl);
 
@@ -56,8 +59,10 @@ export class OrderReaderComponent implements OnInit {
         audio.play().catch(() => {
           this.isPlaying = false;
         });
-      }, () => {
+      },
+      error: () => {
         this.isPlaying = false;
-      });
+      }
+    });
   }
 }
