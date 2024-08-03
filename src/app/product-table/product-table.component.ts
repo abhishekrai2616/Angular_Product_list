@@ -10,13 +10,11 @@ import { SharedService } from '../shared.service';
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.css']
 })
-export class OrderSummaryTableComponent implements OnInit {
+export class OrderSummaryTableComponent  {
   rows: { product: string; quantity: number }[] = [];
   displayedColumns: string[] = ['product', 'quantity'];
 
-  constructor(private sharedService: SharedService) { }
-
-  ngOnInit(): void {
+  constructor(private sharedService: SharedService) {
     this.sharedService.rows$.subscribe(rows => this.rows = rows);
   }
 }

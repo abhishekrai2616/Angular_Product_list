@@ -20,7 +20,6 @@ export class AppProductChoose {
   rows: { product: string; quantity: number }[] = [];
 
   constructor(private sharedService: SharedService) {
-    // Subscribe to shared service observables
     this.sharedService.products$.subscribe(products => this.products = products);
     this.sharedService.productRow$.subscribe(productRow => this.productRow = productRow);
     this.sharedService.quantityRow$.subscribe(quantityRow => this.quantityRow = quantityRow);
@@ -37,6 +36,6 @@ export class AppProductChoose {
     }
 
     this.productRow = '';
-    this.quantityRow = 0;
+    this.quantityRow = 0; 
   }
 }

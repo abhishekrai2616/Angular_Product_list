@@ -13,20 +13,19 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './order-reader.component.html',
   styleUrls: ['./order-reader.component.css']
 })
-export class OrderReaderComponent implements OnInit {
+export class OrderReaderComponent {
   rows: { product: string; quantity: number }[] = [];
   apiKey = '378bec58599b42e1adbc7a65edd1586f'; 
   apiUrl = 'https://api.voicerss.org/';
   private isPlaying = false; 
 
-  constructor(private sharedService: SharedService, private http: HttpClient) { }
-
-  ngOnInit(): void {
+  constructor(private sharedService: SharedService, private http: HttpClient) { 
     this.sharedService.rows$.subscribe({
       next: rows => this.rows = rows,
       error: err => console.error('Error: ', err)
     });
   }
+
 
   readOrder(): void {
     if (this.isPlaying) {
